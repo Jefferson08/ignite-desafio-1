@@ -24,7 +24,7 @@ export default {
       'danger': '#E25858'
     },
     fontSize: {
-      base: ['1rem', '1.25rem']
+      base: ['1rem', '1.375rem']
     },
     extend: {
       colors: {
