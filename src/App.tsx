@@ -1,22 +1,17 @@
-import logo from "./assets/logo.svg"
-
+import {TaskForm} from "./components/TaskForm";
+import {Header} from "./components/Header";
 function App() {
   return (
       <>
-          <header className="bg-grey-700 lg:py-20">
-              <div className="container flex justify-center">
-                  <img src={logo} alt=""/>
-              </div>
-          </header>
+          <Header/>
 
           <main>
               <div className="container">
-                  <h1 className="text-base text-white">teste</h1>
+                  <TaskForm/>
               </div>
           </main>
 
       </>
   )
 }
-
 export default App

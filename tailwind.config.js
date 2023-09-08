@@ -23,6 +23,9 @@ export default {
       'purple-dark': '#5E60CE',
       'danger': '#E25858'
     },
+    fontSize: {
+      base: ['1rem', '1.25rem']
+    },
     extend: {
       colors: {
         gray: {
