@@ -38,7 +38,9 @@ export default {
           700: '#0D0D0D',
         },
         blue: '#4EA8DE',
+        'blue-dark': '#1E6F9F',
         purple: '#8284FA',
+        'purple-dark': '#5E60CE',
         white: '#FFFFFF'
       },
     },

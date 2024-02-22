@@ -1,5 +1,6 @@
 import {TaskForm} from "./components/TaskForm";
 import {Header} from "./components/Header";
+import {MyCheckbox} from "./components/Checkbox.tsx";
 function App() {
   return (
       <>
@@ -8,6 +9,7 @@ function App() {
           <main>
               <div className="container">
                   <TaskForm/>
+                  <MyCheckbox/>
               </div>
           </main>
 
