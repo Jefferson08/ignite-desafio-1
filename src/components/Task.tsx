@@ -22,7 +22,9 @@ export const Task = ({task, handleDelete, handleToggle}: Props) => {
                 {task.text}
             </p>
 
-            <Trash className="text-gray-100" size={24} onClick={() => handleDelete(task.id)} />
+            <div className="icon hover:bg-gray-400 text-gray-100 hover:text-danger cursor-pointer w-6 h-6 flex items-center justify-center rounded" onClick={() => handleDelete(task.id)}>
+                <Trash className="" size={16} />
+            </div>
         </div>
     )
 }
