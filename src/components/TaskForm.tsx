@@ -1,16 +1,27 @@
 import {Input} from "./Input";
 import {PlusCircle} from "phosphor-react";
 import {Button} from "./Button";
-import {FormEvent} from "react";
+import {FormEvent, useState} from "react";
 
-export const TaskForm = () => {
-    function handleCreateTask(event: FormEvent) {
+interface TaskFormProps {
+    handleAddTask: (text: string) => void;
+}
+
+export const TaskForm = ({handleAddTask}:TaskFormProps) => {
+
+    const [inputValue, setInputValue] = useState(""); // State to store input valu
+    function handleSubmit(event: FormEvent) {
         event.preventDefault();
+
+        if(inputValue.length > 3) {
+            setInputValue("");
+            handleAddTask(inputValue);
+        }
     }
 
     return (
-        <form className="flex items-center gap-2 -mt-[27px]" onSubmit={handleCreateTask}>
-            <Input placeholder="Adicione uma nova tarefa" type="text"/>
+        <form className="flex items-center gap-2 -mt-[27px]" onSubmit={handleSubmit}>
+            <Input value={inputValue} placeholder="Adicione uma nova tarefa" type="text" onChange={(e) => setInputValue(e.target.value)}/>
             <Button text="Criar" icon={<PlusCircle className="text-white" size={16} />}/>
         </form>
     )
