@@ -3,6 +3,7 @@ import {Header} from "./components/Header";
 import {Task} from "./components/Task.tsx";
 import { v4 as uuidv4 } from 'uuid';
 import {useState} from "react";
+import {Empty} from "./components/Empty.tsx";
 
 export interface TaskProps {
     id: string
@@ -64,6 +65,8 @@ function App() {
                               handleDelete={handleDeleteTask}
                           />
                       ))}
+
+                      {tasks.length === 0 && (<Empty />)}
                   </div>
               </div>
           </main>
