@@ -2,7 +2,7 @@ import {TaskForm} from "./components/TaskForm";
 import {Header} from "./components/Header";
 import {Task} from "./components/Task.tsx";
 import { v4 as uuidv4 } from 'uuid';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Empty} from "./components/Empty.tsx";
 
 export interface TaskProps {
@@ -12,7 +12,14 @@ export interface TaskProps {
 }
 
 function App() {
-    const [tasks, setTasks] = useState<TaskProps[]>([])
+    const [tasks, setTasks] = useState<TaskProps[]>(() => {
+        const storedTasks = localStorage.getItem("tasks");
+        return storedTasks ? JSON.parse(storedTasks) : [];
+    });
+
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }, [tasks]);
 
     const handleAddTask = (text: string) => {
         const newTask: TaskProps = {
@@ -21,7 +28,7 @@ function App() {
             done: false,
         }
 
-        setTasks([...tasks, newTask])
+        setTasks(prevTasks => [...prevTasks, newTask]);
     }
 
     const handleToggleTask = (id: string) => {
@@ -46,6 +53,13 @@ function App() {
         }
     }
 
+    const completedTasksCount = tasks.reduce((acc, task) => {
+      if (task.done) {
+        acc++;
+      }
+      return acc;
+    }, 0);
+
     return (
       <>
           <Header/>
@@ -56,6 +70,19 @@ function App() {
               </div>
 
               <div className="container">
+
+                  <div className="flex justify-between mb-6">
+                      <aside className="flex items-center gap-2">
+                          <p className="text-sm text-blue font-bold">Tarefas criadas</p>
+                          <p className="flex items-center bg-gray-400 text-xs text-gray-200 font-bold px-2 rounded-full h-[19px]">{tasks.length}</p>
+                      </aside>
+
+                      <aside className="flex items-center gap-2">
+                          <p className="text-sm text-purple font-bold">Concluídas</p>
+                          <p className="flex items-center bg-gray-400 text-xs text-gray-200 font-bold px-2 rounded-full h-[19px]">{completedTasksCount}</p>
+                      </aside>
+                  </div>
+
                   <div className="taks-container flex flex-col gap-3">
                       {tasks.map(task => (
                           <Task
