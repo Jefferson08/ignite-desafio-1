@@ -16,6 +16,8 @@ export const TaskForm = ({handleAddTask}:TaskFormProps) => {
         if(inputValue.length > 3) {
             setInputValue("");
             handleAddTask(inputValue);
+        } else {
+            alert("Please enter at least 4 characters");
         }
     }
 
