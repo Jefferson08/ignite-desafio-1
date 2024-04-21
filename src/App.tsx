@@ -38,9 +38,11 @@ function App() {
     }
 
     const handleDeleteTask = (id: string) => {
-        const newTasks = tasks.filter(task => task.id!== id)
+        if(confirm('Are you sure you want to delete this task?')) {
+            const newTasks = tasks.filter(task => task.id!== id)
 
-        setTasks(newTasks)
+            setTasks(newTasks)
+        }
     }
 
     return (
